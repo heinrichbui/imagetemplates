@@ -9,7 +9,7 @@
 Param (
 
     [Parameter(Mandatory=$true)]
-        [string]$TrellixInstaller
+        [string]$TrellixInstallerUrl
 )
 
 ######################
@@ -40,8 +40,8 @@ else {
 #################################
 #    Download AVD Components    #
 #################################
-Write-Host "AVD AIB Customization - Install McAfee Trellix : Downloading FSLogix from URI: $TrellixInstaller"
-Invoke-WebRequest -Uri $TrellixInstaller -OutFile "$LocalAVDpath$TrellixInstaller"
+Write-Host "AVD AIB Customization - Install McAfee Trellix : Downloading FSLogix from URI: $TrellixInstallerUrl"
+Invoke-WebRequest -Uri $TrellixInstallerUrl -OutFile "$LocalAVDpath$TrellixInstaller"
 
 
 ##############################

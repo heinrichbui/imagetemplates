@@ -9,15 +9,15 @@
 Param (
 
     [Parameter(Mandatory=$true)]
-        [string]$AcroDCInstaller
+        [string]$AcrobatInstaller
 )
 
 ######################
 #    AVD Variables   #
 ######################
 $LocalAVDpath            = "c:\temp\avd\"
-$AcroDCInstaller             = 'AcroRdrDC_en_US.zip'
-$templateFilePathFolder = "C:\AVDImage"
+$AcroDCInstaller         = 'AcroRdrDC_en_US.zip'
+$templateFilePathFolder  = "C:\AVDImage"
 
 ####################################
 #    Test/Create Temp Directory    #
@@ -40,8 +40,8 @@ else {
 #################################
 #    Download AVD Components    #
 #################################
-Write-Host "AVD AIB Customization - Install Adobe Acrobat Reader : Downloading Acrobat Reader DC from URI: $AcroDCInstaller"
-Invoke-WebRequest -Uri $AcroDCInstaller -OutFile "$LocalAVDpath$AcroDCInstaller"
+Write-Host "AVD AIB Customization - Install Adobe Acrobat Reader : Downloading Acrobat Reader DC from URI: $AcrobatInstaller"
+Invoke-WebRequest -Uri $AcrobatInstaller -OutFile "$LocalAVDpath$AcroDCInstaller"
 
 
 ##############################
