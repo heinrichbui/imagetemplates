@@ -64,7 +64,7 @@ Write-Host "AVD AIB Customization - Install Adobe Acrobat Reader : UnZip of Acro
 Write-Host "AVD AIB Customization - Install Adobe Acrobat Reader : Starting to install AcrobatDC"
 $AcrobatDC_deploy_status = Start-Process `
     -FilePath "$LocalAVDpath\AcrobatDC\AcroRdrDC_en_US.exe" `
-    -ArgumentList "/install=agent /silent /norestart" `
+    -ArgumentList "/install /silent /norestart" `
     -Wait `
     -Passthru
 
