@@ -3,7 +3,7 @@
 #>
 
 #######################################
-#     Install Adobe Acrobat Reader    #
+#     Install Acrobat Reader          #
 #######################################
 
 Param (
