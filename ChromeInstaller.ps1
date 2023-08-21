@@ -24,14 +24,14 @@ $msiFilePath             = "$LocalAVDpath\GoogleChrome\googlechromestandaloneent
 #    Test/Create Temp Directory    #
 ####################################
 if((Test-Path c:\temp) -eq $false) {
-    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : Creating temp directory"
+    Write-Host "AVD AIB Customization - Install Google Chrome : Creating temp directory"
     New-Item -Path c:\temp -ItemType Directory
 }
 else {
-    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : C:\temp already exists"
+    Write-Host "AVD AIB Customization - Install Google Chrome : C:\temp already exists"
 }
 if((Test-Path $LocalAVDpath) -eq $false) {
-    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : Creating directory: $LocalAVDpath"
+    Write-Host "AVD AIB Customization - Install Google Chrome : Creating directory: $LocalAVDpath"
     New-Item -Path $LocalAVDpath -ItemType Directory
 }
 else {
@@ -42,7 +42,7 @@ else {
 #    Download AVD Components    #
 #################################
 Write-Host "AVD AIB Customization - Install Google Chrome : Downloading Google Chrome DC from URI: $ChromeInstallerURL"
-Invoke-WebRequest -Uri $ChromeInstallerURL -OutFile "$LocalAVDpath$AcroDCInstaller"
+Invoke-WebRequest -Uri $ChromeInstallerURL -OutFile "$LocalAVDpath$ChromeInstaller"
 
 
 ##############################
