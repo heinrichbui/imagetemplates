@@ -18,20 +18,20 @@ Param (
 $LocalAVDpath            = "c:\temp\avd\"
 $ChromeInstaller         = 'googlechromestandaloneenterprise64.zip'
 $templateFilePathFolder  = "C:\AVDImage"
-$msiFilePath             = "$LocalAVDpath\GoogleChrome\googlechromestandaloneenterprise64.msi"
+$msiFilePath             =  "C:\temp\avd\GoogleChrome\googlechromestandaloneenterprise64.msi"
 
 ####################################
 #    Test/Create Temp Directory    #
 ####################################
 if((Test-Path c:\temp) -eq $false) {
-    Write-Host "AVD AIB Customization - Install Google Chrome : Creating temp directory"
+    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : Creating temp directory"
     New-Item -Path c:\temp -ItemType Directory
 }
 else {
-    Write-Host "AVD AIB Customization - Install Google Chrome : C:\temp already exists"
+    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : C:\temp already exists"
 }
 if((Test-Path $LocalAVDpath) -eq $false) {
-    Write-Host "AVD AIB Customization - Install Google Chrome : Creating directory: $LocalAVDpath"
+    Write-Host "AVD AIB Customization - Install Adobe Google Chrome : Creating directory: $LocalAVDpath"
     New-Item -Path $LocalAVDpath -ItemType Directory
 }
 else {
@@ -41,7 +41,7 @@ else {
 #################################
 #    Download AVD Components    #
 #################################
-Write-Host "AVD AIB Customization - Install Google Chrome : Downloading Google Chrome DC from URI: $ChromeInstallerURL"
+Write-Host "AVD AIB Customization - Install Google Chrome : Downloading Google Chrome from URI: $ChromeInstallerURL"
 Invoke-WebRequest -Uri $ChromeInstallerURL -OutFile "$LocalAVDpath$ChromeInstaller"
 
 
@@ -59,26 +59,21 @@ Set-Location $LocalAVDpath
 Write-Host "AVD AIB Customization - Install Google Chrome : UnZip of Chrome Installer complete"
 
 
-#########################
-#    AcrobatDC Install    #
-#########################
+###############################
+#    Google Chrome Install    #
+###############################
 Write-Host "AVD AIB Customization - Install Google Chrome : Starting to install Google Chrome"
-$AcrobatDC_deploy_status = Start-Process `
-    -FilePath misexec `
-    -ArgumentList '/I $msiFilePath /quiet' `
+# Define arguments
+[System.Collections.ArrayList]$arguments = 
+@("/i `"$msiFilePath`"",
+"/quiet")
+$GoogleChrome_deploy_status = Start-Process `
+    -FilePath msiexec `
+    -ArgumentList "$arguments" `
     -Wait `
-    -Passthru
+    -NoNewWindow
 
-Write-Host "AVD AIB Customization - Install Google Chrome : Finished installing Google Chrome agent"
-
-#Cleanup
-if ((Test-Path -Path $templateFilePathFolder -ErrorAction SilentlyContinue)) {
-    Remove-Item -Path $templateFilePathFolder -Force -Recurse -ErrorAction Continue
-}
-
-if ((Test-Path -Path $LocalAVDpath -ErrorAction SilentlyContinue)) {
-    Remove-Item -Path $LocalAVDpath -Force -Recurse -ErrorAction Continue
-}
+Write-Host "AVD AIB Customization - Install Google Chrome : Finished installing Google Chrome"
 
 #############
 #    END    #
